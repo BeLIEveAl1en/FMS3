@@ -1,9 +1,9 @@
-package fms;
+package com.artem.math.validator;
 
 public class FMS {
 
     public static void main(String[] args) {
-        String str = "6.708 +7.4/7.7+24.07";
+        String str = "21.06 / 700.5 + 485.02";
         StateMachine stateMachine = new StateMachine();
 
         ValidationResult result = stateMachine.validate(str);
