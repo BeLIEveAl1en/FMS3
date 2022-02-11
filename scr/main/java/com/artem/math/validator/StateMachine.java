@@ -60,14 +60,11 @@ public class StateMachine {
                 if(symbol == '-' || Character.isDigit(symbol)){
                     state.setState(3);
                 }
-                else if(Character.isWhitespace(symbol)){
-                    state.setState(2);
-                }
                 else if(symbol == '('){
                     counter++;
                     state.setState(0);
                 }
-                else {
+                else if(!Character.isWhitespace(symbol)){
                     return false;
                 }
                 return true;
