@@ -6,8 +6,7 @@ public class StateMachine {
     private int position = 0;
     private int counter;
     private boolean isState = true;
-
-    public static State state = new State(0);
+    private final State state = new State(0);
 
     public ValidationResult validate(String inputStr){
         str = inputStr.toCharArray();
@@ -43,9 +42,15 @@ public class StateMachine {
                 return true;
 
             case 1 :
-                if (Character.isDigit(symbol) || isDot(symbol, isState) || Character.isWhitespace(symbol)){
-                    isState = false;
+                if(Character.isWhitespace(symbol) && !isState){
+                    return false;
+                }
+                else if (Character.isDigit(symbol) || Character.isWhitespace(symbol)){
                     state.setState(1);
+                }
+                else if(isDot(symbol, isState)){
+                    isState = false;
+                    return true;
                 }
                 else if (isOperator(symbol)){
                     state.setState(2);
@@ -70,9 +75,15 @@ public class StateMachine {
                 return true;
 
             case 3 :
-                if (Character.isDigit(symbol) || isOperator(symbol) || isDot(symbol, isState)){
-                    isState = false;
+                if(Character.isWhitespace(symbol) && !isState){
+                    return false;
+                }
+                if (Character.isDigit(symbol) || isOperator(symbol)){
                     state.setState(3);
+                }
+                else if(isDot(symbol, isState)){
+                    isState = false;
+                    return true;
                 }
                 else if(symbol == ')'){
                     counter--;

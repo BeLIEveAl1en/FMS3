@@ -107,13 +107,13 @@ public class FMSTest {
     }
 
     @Test
-    public void shouldFailWithWhitespaceAndTwoDot(){
-        shouldPass("21..06 / 700.5 + 485.02");
+    public void shouldFailWithTwoDot(){
+        shouldFail("21..06 / 700.5 + 485.02");
     }
 
     @Test
-    public void shouldFailWithOperatorAndBracketsAndWithTwoDots(){
-        shouldPass("(-21 / (-700 + -485..09))");
+    public void shouldFailWithoutNumberAfterDot(){
+        shouldFail("21.7 / 700. + 485.02");
     }
 }
 

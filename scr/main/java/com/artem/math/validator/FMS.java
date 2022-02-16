@@ -11,7 +11,7 @@ public class FMS {
             System.out.println("OK");
         }
         else {
-            System.out.println("ERROR. Comment " + result.getComment() + ", state: " + StateMachine.state.getState());
+            System.out.println("ERROR. Comment " + result.getComment());
         }
     }
 }
